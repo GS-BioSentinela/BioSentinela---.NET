@@ -1,4 +1,6 @@
-﻿namespace NET___BioSentinela.Domain.Entities
+﻿using NET___BioSentinela.Infrastructure.DTO.Request;
+
+namespace NET___BioSentinela.Domain.Entities
 {
     public class Alerta : SensorAudit
     {
@@ -9,6 +11,11 @@
         public Guid SensorId { get; private set; }
         public Sensor Sensor { get; private set; }
 
-        public Alerta() { }
+        public Alerta(AlertaRequest alertaRequest)
+        {
+            Id = Guid.NewGuid();
+            Tipo = alertaRequest.Tipo;  
+            Mensagem = alertaRequest.Mesagem;
+        }
     }
 }

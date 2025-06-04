@@ -8,6 +8,6 @@ RUN useradd -ms /bin/bash orcluser
 USER orcluser
 
 # Variável de ambiente obrigatória
-ENV ORACLE_PWD=MyOraclePassword123
+ENV ORACLE_CONN=Data Source=oracle.fiap.com.br:1521/orcl;User ID=xxxx;Password=xxxx;
 
 EXPOSE 1521 5500

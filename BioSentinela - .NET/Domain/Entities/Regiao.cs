@@ -1,4 +1,6 @@
-﻿namespace NET___BioSentinela.Domain.Entities
+﻿using NET___BioSentinela.Infrastructure.DTO.Request;
+
+namespace NET___BioSentinela.Domain.Entities
 {
     public class Regiao : UserAudit
     {
@@ -6,6 +8,11 @@
         public string Nome { get; private set; }
         public string Bioma { get; private set; }
 
-        public Regiao() { }
+        public Regiao(RegiaoRequest regiaoRequest)
+        {
+            Id = Guid.NewGuid();
+            Nome = regiaoRequest.Nome;
+            Bioma = regiaoRequest.Bioma;
+        }
     }
 }

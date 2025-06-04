@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.Pkcs;
+﻿using NET___BioSentinela.Infrastructure.DTO.Request;
+using System.Security.Cryptography.Pkcs;
 
 namespace NET___BioSentinela.Domain.Entities
 {
@@ -13,6 +14,10 @@ namespace NET___BioSentinela.Domain.Entities
         
         public List<Alerta> Alertas { get; private set; }      
 
-        public Sensor() { }
+        public Sensor(SensorRequest sensorRequest) {
+            Id = Guid.NewGuid();
+            Tipo = sensorRequest.Tipo;
+            Localizacao = sensorRequest.Localizacao;
+        }
     }
 }
