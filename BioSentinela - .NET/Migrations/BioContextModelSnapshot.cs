@@ -66,7 +66,7 @@ namespace BioSentinela___.NET.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("NVARCHAR2(200)");
 
-                    b.Property<string>("Crated")
+                    b.Property<string>("Created")
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
@@ -81,7 +81,7 @@ namespace BioSentinela___.NET.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("NVARCHAR2(200)");
 
-                    b.Property<string>("Update")
+                    b.Property<string>("Updated")
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
@@ -129,9 +129,10 @@ namespace BioSentinela___.NET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("RAW(16)");
 
-                    b.Property<string>("Crated")
+                    b.Property<string>("Created")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasMaxLength(20)
+                        .HasColumnType("NVARCHAR2(20)");
 
                     b.Property<DateTime>("DataCreated")
                         .HasColumnType("TIMESTAMP(7)");
@@ -144,7 +145,7 @@ namespace BioSentinela___.NET.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("NVARCHAR2(20)");
 
-                    b.Property<string>("Update")
+                    b.Property<string>("Updated")
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 

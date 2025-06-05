@@ -9,6 +9,8 @@ namespace NET___BioSentinela.Infrastructure.Persistence.Repositories
         private readonly BioContext _context;
         private readonly DbSet<T> _dbSet;
 
+
+
         public Repository(BioContext context)
         {
             _context = context;

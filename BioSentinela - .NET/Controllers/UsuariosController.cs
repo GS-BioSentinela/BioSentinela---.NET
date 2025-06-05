@@ -48,16 +48,22 @@ namespace BioSentinela___.NET.Controllers
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(Guid id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(Guid id, UsuarioRequest request)
         {
+            var usuario = await _usuarioRepository.GetByIdAssync(id);
+
+            if (usuario == null)
+                return NotFound();
+
             if (id != usuario.Id)
             {
                 return BadRequest();
             }
 
+            usuario.Update(request);
             _usuarioRepository.Update(usuario);
 
-            return NoContent();
+           return NoContent();
         }
 
         // POST: api/Usuarios
@@ -76,24 +82,21 @@ namespace BioSentinela___.NET.Controllers
         }
 
         // DELETE: api/Usuarios/5
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(Guid id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _usuarioRepository.GetByIdAssync(id);
             if (usuario == null)
             {
                 return NotFound();
             }
 
-            _context.Usuarios.Remove(usuario);
-            await _context.SaveChangesAsync();
+            _usuarioRepository.Delete(usuario);
 
             return NoContent();
         }
 
-        private bool UsuarioExists(Guid id)
-        {
-            return _context.Usuarios.Any(e => e.Id == id);
-        }
+
     }
 }

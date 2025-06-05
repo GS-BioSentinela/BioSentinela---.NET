@@ -22,6 +22,11 @@ namespace NET___BioSentinela.Infrastructure.Mapping
                 .Property (u => u.Password)
                 .HasMaxLength(20)
                 .IsRequired();
+
+            builder
+                .Property(u => u.Created)
+                .HasMaxLength(20)
+                .IsRequired();
         }
     }
 }

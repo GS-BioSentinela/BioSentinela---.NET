@@ -18,9 +18,9 @@ namespace BioSentinela___.NET.Migrations
                     Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     Nome = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
                     Bioma = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
-                    Crated = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Created = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     DataCreated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    Update = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Updated = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     DataUpdated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
@@ -35,9 +35,9 @@ namespace BioSentinela___.NET.Migrations
                     Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     Username = table.Column<string>(type: "NVARCHAR2(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
-                    Crated = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Created = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
                     DataCreated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
-                    Update = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    Updated = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     DataUpdated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>

@@ -11,6 +11,11 @@ namespace NET___BioSentinela.Domain.Entities
         public Guid SensorId { get; private set; }
         public Sensor Sensor { get; private set; }
 
+        public Alerta()
+        {
+
+        }
+
         public Alerta(AlertaRequest alertaRequest)
         {
             Id = Guid.NewGuid();
