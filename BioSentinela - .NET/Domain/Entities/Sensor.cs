@@ -4,7 +4,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace NET___BioSentinela.Domain.Entities
 {
-    public class Sensor : SensorAudit
+    public class Sensor : UserAudit
     {
         public Guid Id { get; private set; }
         public string Tipo { get; private set; }
@@ -21,10 +21,7 @@ namespace NET___BioSentinela.Domain.Entities
             Id = Guid.NewGuid();
             Tipo = sensorRequest.Tipo;
             Localizacao = sensorRequest.Localizacao;
-            RegiaoId = sensorRequest.RegiaoId;
-
-            Created = "Sistema"; // Ou algum usuário real
-            DataCreated = DateTime.UtcNow;
+            RegiaoId = sensorRequest.RegiaoId;               
         }
 
 
@@ -33,9 +30,10 @@ namespace NET___BioSentinela.Domain.Entities
             Tipo = request.Tipo;
             Localizacao = request.Localizacao;
             RegiaoId = request.RegiaoId;
- 
-            Created = "Sistema"; // Ou algum usuário real
-            DataCreated = DateTime.UtcNow;
+
+            
+            Updated = "Sistema";
+            DataUpdated = DateTime.UtcNow;
         }
     }
 }

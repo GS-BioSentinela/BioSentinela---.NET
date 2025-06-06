@@ -54,7 +54,9 @@ namespace BioSentinela___.NET.Migrations
                     Localizacao = table.Column<string>(type: "NVARCHAR2(150)", maxLength: 150, nullable: false),
                     RegiaoId = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     Created = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    DataCreated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
+                    DataCreated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
+                    Updated = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    DataUpdated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,7 +78,9 @@ namespace BioSentinela___.NET.Migrations
                     Mensagem = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
                     SensorId = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     Created = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    DataCreated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
+                    DataCreated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
+                    Updated = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    DataUpdated = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {

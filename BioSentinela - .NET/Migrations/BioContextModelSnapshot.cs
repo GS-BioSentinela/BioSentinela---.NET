@@ -35,6 +35,9 @@ namespace BioSentinela___.NET.Migrations
                     b.Property<DateTime>("DataCreated")
                         .HasColumnType("TIMESTAMP(7)");
 
+                    b.Property<DateTime>("DataUpdated")
+                        .HasColumnType("TIMESTAMP(7)");
+
                     b.Property<string>("Mensagem")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -47,6 +50,10 @@ namespace BioSentinela___.NET.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("NVARCHAR2(50)");
+
+                    b.Property<string>("Updated")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Id");
 
@@ -103,6 +110,9 @@ namespace BioSentinela___.NET.Migrations
                     b.Property<DateTime>("DataCreated")
                         .HasColumnType("TIMESTAMP(7)");
 
+                    b.Property<DateTime>("DataUpdated")
+                        .HasColumnType("TIMESTAMP(7)");
+
                     b.Property<string>("Localizacao")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -115,6 +125,10 @@ namespace BioSentinela___.NET.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR2(100)");
+
+                    b.Property<string>("Updated")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Id");
 
@@ -173,12 +187,17 @@ namespace BioSentinela___.NET.Migrations
             modelBuilder.Entity("NET___BioSentinela.Domain.Entities.Sensor", b =>
                 {
                     b.HasOne("NET___BioSentinela.Domain.Entities.Regiao", "Regiao")
-                        .WithMany()
+                        .WithMany("Sensors")
                         .HasForeignKey("RegiaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Regiao");
+                });
+
+            modelBuilder.Entity("NET___BioSentinela.Domain.Entities.Regiao", b =>
+                {
+                    b.Navigation("Sensors");
                 });
 
             modelBuilder.Entity("NET___BioSentinela.Domain.Entities.Sensor", b =>

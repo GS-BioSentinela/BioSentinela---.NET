@@ -22,7 +22,12 @@ namespace NET___BioSentinela.Infrastructure.Mapping
             builder
                 .Property (s => s.Localizacao)
                 .HasMaxLength(150)
-                .IsRequired();  
+                .IsRequired();
+
+            builder
+              .Property(s => s.Created)
+              .HasMaxLength(20)
+              .IsRequired();
         }
     }
 }

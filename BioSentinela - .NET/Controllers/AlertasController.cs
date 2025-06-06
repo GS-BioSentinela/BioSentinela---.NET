@@ -18,10 +18,12 @@ namespace BioSentinela___.NET.Controllers
     public class AlertasController : ControllerBase
     {
         private readonly IRepository<Alerta> _alertsRepository;
+        private readonly IRepository<Sensor> _sensorRepository;
 
-        public AlertasController(IRepository<Alerta> alertsRepository)
+        public AlertasController(IRepository<Alerta> alertsRepository, IRepository<Sensor> sensorRepository)
         {
             _alertsRepository = alertsRepository;
+            _sensorRepository = sensorRepository;
         }
 
         // GET: api/Alertas
@@ -48,13 +50,19 @@ namespace BioSentinela___.NET.Controllers
         // PUT: api/Alertas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAlerta(Guid id, Alerta alerta)
+        public async Task<IActionResult> PutAlerta(Guid id, AlertaRequest request)
         {
+            var alerta = await _alertsRepository.GetByIdAssync(id);
+
+            if(alerta == null)
+                return NotFound();
+
             if (id != alerta.Id)
             {
                 return BadRequest();
             }
 
+            alerta.Update(request);
             _alertsRepository.Update(alerta);
             
             return NoContent();
@@ -68,7 +76,22 @@ namespace BioSentinela___.NET.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<Alerta>> PostAlerta(AlertaRequest alertaRequest)
         {
-            var alerta = new Alerta(alertaRequest);
+            var sensor = await _sensorRepository.GetByIdAssync(alertaRequest.SensorId);
+            if (sensor == null)
+                return BadRequest();
+
+            var alerta = new Alerta(alertaRequest)
+            {
+                Created = "Sistema",
+                DataCreated = DateTime.UtcNow,
+                Updated = "Sistema",
+                DataUpdated = DateTime.UtcNow
+            };
+
+
+
+
+            await _alertsRepository.AddAsync(alerta);
 
             return CreatedAtAction("GetAlerta", new { id = alerta.Id }, alerta);
         }

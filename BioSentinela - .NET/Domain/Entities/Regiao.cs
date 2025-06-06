@@ -8,7 +8,7 @@ namespace NET___BioSentinela.Domain.Entities
         public string Nome { get; private set; }
         public string Bioma { get; private set; }
 
-        public List<Sensor> sensors { get; private set; }
+        public List<Sensor> Sensors { get; private set; }
 
         public Regiao() { }
 

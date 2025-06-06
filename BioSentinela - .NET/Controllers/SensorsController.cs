@@ -18,10 +18,12 @@ namespace BioSentinela___.NET.Controllers
     public class SensorsController : ControllerBase
     {
        private readonly IRepository<Sensor> _sensorRepository;
+       private readonly IRepository<Regiao> _regiaoRepository;
 
-        public SensorsController(IRepository<Sensor> sensorRepository)
+        public SensorsController(IRepository<Sensor> sensorRepository, IRepository<Regiao> regiaoRepository)
         {
             _sensorRepository = sensorRepository;
+            _regiaoRepository = regiaoRepository;
         }
 
         // GET: api/Sensors
@@ -78,7 +80,17 @@ namespace BioSentinela___.NET.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<Sensor>> PostSensor(SensorRequest sensorRequest)
         {
-            var sensor = new Sensor(sensorRequest);
+            var regiao = await _regiaoRepository.GetByIdAssync(sensorRequest.RegiaoId);
+            if (regiao == null)
+                return BadRequest();
+
+            var sensor = new Sensor(sensorRequest)
+            {
+                Created = "Sistema",
+                DataCreated = DateTime.UtcNow,
+                Updated = "Sitema",
+                DataUpdated = DateTime.UtcNow,
+            };
 
             await _sensorRepository.AddAsync(sensor);
 

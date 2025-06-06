@@ -22,6 +22,11 @@ namespace NET___BioSentinela.Infrastructure.Mapping
                 .Property(a => a.Mensagem)
                 .HasMaxLength(200)
                 .IsRequired();
+
+            builder
+              .Property(a => a.Created)
+              .HasMaxLength(20)
+              .IsRequired();
         }
     }
 }
